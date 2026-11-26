@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Subtle dark lunar limb circle -->
+    <path
+        android:fillColor="#FF162038"
+        android:pathData="M54,28 A26,26 0 1,0 54,80 A26,26 0 1,0 54,28 Z" />
+    <!-- Luminous silver waxing crescent silhouette centered in 66dp safe zone -->
+    <path
+        android:fillColor="#FFF1F5FF"
+        android:pathData="M54,28 C68.36,28 80,39.64 80,54 C80,68.36 68.36,80 54,80 C47.3,80 41.2,77.45 36.6,73.25 C40.1,74.8 43.9,75.6 48,75.6 C61.2,75.6 71.8,65.9 71.8,54 C71.8,42.1 61.2,32.4 48,32.4 C43.9,32.4 40.1,33.2 36.6,34.75 C41.2,30.55 47.3,28 54,28 Z" />
+    <!-- Subtle single pinpoint star accent -->
+    <path
+        android:fillColor="#FFAEC5FF"
+        android:pathData="M34,42 L35.2,45.2 L38.4,46.4 L35.2,47.6 L34,50.8 L32.8,47.6 L29.6,46.4 L32.8,45.2 Z" />
+</vector>

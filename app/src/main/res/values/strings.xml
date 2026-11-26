@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Lunar</string>
+    <string name="brand_title">LUNAR</string>
+    <string name="brand_tagline">THE MOON, CLOSER THAN EVER.</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_explore">Explore</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_tonight">Tonight</string>
+    <string name="widget_small_name">Lunar Phase (Small)</string>
+    <string name="widget_medium_name">Lunar Phase &amp; Countdown (Medium)</string>
+    <string name="widget_large_name">Lunar Telemetry (Large)</string>
+    <string name="notification_channel_name">Lunar Astronomy Alerts</string>
+    <string name="notification_channel_desc">Quiet, optional alerts for Moon phases, moonrise, eclipses, and clear sky viewing opportunities.</string>
+    <string name="cd_back">Navigate back</string>
+    <string name="cd_settings">Open settings</string>
+    <string name="cd_calendar">Open lunar calendar</string>
+    <string name="cd_favorite">Toggle favorite</string>
+    <string name="cd_share">Share</string>
+    <string name="cd_save">Save image</string>
+    <string name="cd_moon_visual">Realistic visual of the current Moon phase</string>
+</resources>

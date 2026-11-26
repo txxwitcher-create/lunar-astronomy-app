@@ -1,0 +1,6 @@
+{
+  "name": "Lunar",
+  "description": "Personal Moon and night-sky companion with scientifically accurate lunar phases, interactive lunar surface exploration, night sky guide, lunar calendar, astronomical events, educational library, photography guides, wallpapers, and home screen widgets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lunar_obsidian">#04060C</color>
+    <color name="lunar_midnight">#0A1020</color>
+    <color name="lunar_silver">#E6EAF2</color>
+    <color name="lunar_muted">#94A3B8</color>
+    <color name="lunar_accent">#7DA2FF</color>
+</resources>
