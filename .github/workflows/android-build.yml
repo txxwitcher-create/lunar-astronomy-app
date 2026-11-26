@@ -1,3 +1,4 @@
+
 name: Build LUNAR Android APK
 
 on:
@@ -25,24 +26,8 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Ensure debug keystore exists for debug APK signing
-        run: |
-          if [ ! -f debug.keystore ]; then
-            keytool -genkeypair -v \
-              -keystore debug.keystore \
-              -storepass android \
-              -alias androiddebugkey \
-              -keypass android \
-              -keyalg RSA \
-              -keysize 2048 \
-              -validity 10000 \
-              -dname "CN=Android Debug,O=Android,C=US"
-          fi
-
-      - name: Setup Gradle & Cache
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '9.3.1'
 
       - name: Run unit tests
         run: gradle :app:testDebugUnitTest --stacktrace
@@ -50,11 +35,11 @@ jobs:
       - name: Build installable Debug APK
         run: gradle :app:assembleDebug --stacktrace
 
-      - name: Verify Debug APK exists
+      - name: Verify APK exists
         run: |
           ls -lh app/build/outputs/apk/debug/app-debug.apk
 
-      - name: Upload Debug APK Artifact (Ready to Install on Phone)
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: LUNAR-debug-apk
@@ -62,38 +47,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-      - name: Decode Release Keystore (when signing secrets are configured)
-        id: release_signing
-        if: ${{ secrets.RELEASE_KEYSTORE_BASE64 != '' && secrets.STORE_PASSWORD != '' && secrets.KEY_PASSWORD != '' }}
-        env:
-          RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
-        run: |
-          echo "$RELEASE_KEYSTORE_BASE64" | base64 --decode > my-upload-key.jks
-          echo "configured=true" >> "$GITHUB_OUTPUT"
-
-      - name: Build Signed Release APK (optional, requires signing secrets)
-        if: steps.release_signing.outputs.configured == 'true'
-        env:
-          KEYSTORE_PATH: ${{ github.workspace }}/my-upload-key.jks
-          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: gradle :app:assembleRelease --stacktrace
-
-      - name: Upload Signed Release APK Artifact
-        if: steps.release_signing.outputs.configured == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: LUNAR-release-apk
-          path: app/build/outputs/apk/release/app-release.apk
-          if-no-files-found: error
-          retention-days: 30
-
       - name: Build Summary
         run: |
-          echo "### LUNAR Cloud Build Complete" >> $GITHUB_STEP_SUMMARY
-          echo "- **Debug APK**: Ready to download under Artifacts -> \`LUNAR-debug-apk\`" >> $GITHUB_STEP_SUMMARY
-          if [ "${{ steps.release_signing.outputs.configured }}" = "true" ]; then
-            echo "- **Signed Release APK**: Ready to download under Artifacts -> \`LUNAR-release-apk\`" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- **Release APK**: Skipped (add \`RELEASE_KEYSTORE_BASE64\`, \`STORE_PASSWORD\`, and \`KEY_PASSWORD\` in GitHub Repository Secrets to enable signed release APKs)." >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "## 🌙 LUNAR APK Build Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Debug APK is ready to download from Artifacts." >> $GITHUB_STEP_SUMMARY
